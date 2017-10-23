@@ -9,7 +9,8 @@ import cucumber.api.junit.*;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        format = {"pretty", "html:target/cucumber"}
+        format = {"pretty", "html:target/cucumber"},
+        features = "src/test/resources"
 )
 public class RunTest {
 }

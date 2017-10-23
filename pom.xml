@@ -69,7 +69,7 @@
                 <version>2.20</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
-                    <workingDirectory>revolut_test/src/test/java</workingDirectory>
+                    <!-- <workingDirectory>src/test/java</workingDirectory> -->
                 </configuration>
             </plugin>
             <plugin>
