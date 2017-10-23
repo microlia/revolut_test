@@ -1,5 +1,5 @@
-#As new user I need an ability to create new beneficiary via mobile app
 Feature: Add a new beneficiary
+  As new user I need an ability to create new beneficiary via mobile app
 
   Background:
     Given mobile app is running

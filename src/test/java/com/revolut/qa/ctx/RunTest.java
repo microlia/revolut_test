@@ -1,4 +1,4 @@
-package ctx;
+package com.revolut.qa.ctx;
 
 import cucumber.api.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -10,7 +10,8 @@ import cucumber.api.junit.*;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         format = {"pretty", "html:target/cucumber"},
-        features = "src/test/resources"
+        features = "src/test/resources/scenarios",
+        glue = "com/revolut/qa"
 )
 public class RunTest {
 }
