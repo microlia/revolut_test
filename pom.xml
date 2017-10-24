@@ -69,7 +69,6 @@
                 <version>2.20</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
-                    <!-- <workingDirectory>src/test/java</workingDirectory> -->
                 </configuration>
             </plugin>
             <plugin>

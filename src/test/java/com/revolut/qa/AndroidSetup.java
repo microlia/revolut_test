@@ -18,11 +18,12 @@ import java.util.concurrent.TimeUnit;
 public class AndroidSetup {
     protected AndroidDriver driver;
     private NewBeneficiaryStepDefinitions newBeneficiarySteps;
+    private DesiredCapabilities capabilities = new DesiredCapabilities();
+    public static String packageName = "com.revolut.revolut.test";
 
     protected void prepareAndroidForAppium() throws MalformedURLException {
         File appDir = new File("/Users/dina.vasileva/Downloads");
         File app = new File(appDir, "Revolut_qa_4.3.0.237.apk");
-        DesiredCapabilities capabilities = new DesiredCapabilities();
 
         //mandatory capabilities
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"test");
@@ -34,15 +35,23 @@ public class AndroidSetup {
         capabilities.setCapability("appActivity", "com.revolut.ui.login.pin.LoginActivity");
         capabilities.setCapability("noReset", true);
         capabilities.setCapability("clearSystemFiles", true);
+    }
 
+    public void startDriver() throws Throwable {
+        prepareAndroidForAppium();
         driver =  new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
+    }
+
+    public void removeApp(String bundleId) throws Throwable {
+        startDriver();
+        driver.removeApp(bundleId);
     }
 
 
     @Before
     public void before() throws Throwable {
-        prepareAndroidForAppium();
+        removeApp("com.revolut.revolut.test");
     }
 
     @After
@@ -50,7 +59,7 @@ public class AndroidSetup {
 //        driver.closeApp();
     }
 
-    public AndroidDriver getDriver() throws Throwable {
+    public AndroidDriver getDriver() {
         return driver;
     }
 
