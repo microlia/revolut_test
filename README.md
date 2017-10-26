@@ -11,6 +11,7 @@ mvn clean test
 
 
 //TODO: Create different avd files with different configuration and startup them by AVD Manager programmatically using command line
+//TODO: Add logging to all steps for clear picture of execution
 
 BUGS:
 1. Critical: Adding new account. Application crashes when user uploads photo made via android camera to app as confirmation documents for account.
