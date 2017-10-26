@@ -1,32 +1,29 @@
-Download the latest Revolut Android app from here:
+IMPORTANT INFO: Please use maven 3.2 for test execution. Versions of other tools used for autotests creation are described in pom.xml file.
 
-Login using any of this test accounts (pin code is 1245):
+1. To run test by flag:
+mvn clean test -Dcucumber.options="--tags @tutorial" -Djava.net.preferIPv4Stack=true -Dlog4j.configuration=log4j.properties
 
-Phone number
-+44 1217104665
-+44 1217104666
-+44 1217104667
-+44 1217104668
-+44 1217104669
+2. To run test by name:
+mvn clean test -Dcucumber.options="--name 'Register new beneficiary' " -Djava.net.preferIPv4Stack=true -Dlog4j.configuration=log4j.properties
 
-You can also sign up for more test accounts using any random phone number starting with +44.
-You can add money to account with “top up by card” option, using one of this test cards: 
-
-Card Type	
-Card Number	
-CVV
-Visa
-4012000100000007
-007
+3. To run all scenarios:
+mvn clean test
 
 
-4012000300006002
-002
-Expiry Date: When using the test card numbers, you can use any date in the future for the expiry date (e.g., 11/18).
-Test:
+//TODO: Create different avd files with different configuration and startup them by AVD Manager programmatically using command line
 
-MAIN TEST: Design a small set of automation test cases with a different scope and priorities for the “Add a new beneficiary” flow. This part off the app can be accessed from the central bottom toolbar button -> “To bank account” -> “Add a new beneficiary”. Note: You can use any framework and programming language, but Appium and Java\Kotlin is preferable. Pay more attention to the quality of the code and its structure, rather than the number of covered scenarios.
+BUGS:
+1. Critical: Adding new account. Application crashes when user uploads photo made via android camera to app as confirmation documents for account.
+Restart of application doesn't help. Reinstallation of app was needed to fix the issue. Note: documents are mentioned by app as sent for the user
+as the app doesn't ask user to upload docs once more after reinstallation. Environment: Nexus 6, Android 7.0 on emulator
 
-BONUS POINTS: Try to find any bugs in the app. Put together a document detailing these bugs in whatever way you see fit.
+2. Minor: Sign up form. When user enters his phone number and click Next system should ask for pin code. On physical device user has to click Next button twice
+for pin code input form. Environment: LG K200, Android 7.0 on physical device. Severity is minor because this issue can be treated by user as network issue.
 
-You can also shortly describe what else could be done and improved in solution that you will provide.
+3. Trivial: Sign up tutorial ("Spend without fees" page):
+Expected: When using RevolutCard, you will get the real exchange rate and always free spending
+Actual: When using RevolutCard, you will get the real exchange rate and spending is always free
+
+4. Trivial: Sign up tutorial ("Control your card security"):
+Expected:  you can disable ATM transactions, contactless payments and so much more!
+Actual: you can disabled ATM transactions, contactless payments and so much more!

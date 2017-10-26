@@ -23,6 +23,11 @@ public class TutorialPage extends BasePage {
             case "Skip":
                 driver.findElement(By.id(ctx.packageName + ":id/header_next")).click();
                 break;
+            case "Next":
+                driver.findElement(By.id(ctx.packageName + ":id/button_next")).click();
+                break;
+            case "Done":
+                driver.findElement(By.id(ctx.packageName + ":id/operation_status_button")).click();
         }
     }
 }

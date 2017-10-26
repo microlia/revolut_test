@@ -25,10 +25,10 @@ public class AndroidSetup {
         File appDir = new File("/Users/dina.vasileva/Downloads");
         File app = new File(appDir, "Revolut_qa_4.3.0.237.apk");
 
-        //mandatory capabilities
+        //TODO: move all settings to properties file
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"test");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.0");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "6.0");
         capabilities.setCapability("avd","test");
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("appPackage", "com.revolut.revolut.test");
@@ -40,12 +40,14 @@ public class AndroidSetup {
     public void startDriver() throws Throwable {
         prepareAndroidForAppium();
         driver =  new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.MINUTES);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     public void removeApp(String bundleId) throws Throwable {
         startDriver();
-        driver.removeApp(bundleId);
+        if (getDriver().isAppInstalled(bundleId)) {
+            driver.removeApp(bundleId);
+        }
     }
 
 

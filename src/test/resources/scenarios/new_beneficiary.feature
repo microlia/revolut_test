@@ -40,16 +40,34 @@ Feature: Add a new beneficiary
     Then sign up form is displayed
 
   
-  @signup
-  Scenario: Register new user happy path
+  @signup @add_beneficiary
+  Scenario: Register new beneficiary
     Given mobile app is running
     And I click "Skip" button
     Then sign up form is displayed
 
     When I enter "1217104665" phone number
     And I click "Next" button at Signup form
-    Then app asks for pin code
+    And I enter "1245" pin code
+    And I click "Not now" button at Signup form
+    And I click central bottom button
+    And I click "To bank account" menu item
+    And I click "Skip" button
+    And I click "Add a new beneficiary" option
+    Then I see "Choose transfer type" title
 
-    When I enter "1245" pin code
-    Then app asks to enter sms verification code
-    
+    When I choose "To myself" radio option
+    And I click "Next" button
+    Then I see "Choose country and currency" title
+
+    When I click "Next" button
+    Then I see "Fill into account details" title
+
+    When I enter "12345678" account number
+    And I enter "123456" sort code
+    And I click "Next" button
+    Then I see "Beneficiary" <name> "was successfully created" confirmation
+
+    When I click "Done" button
+    Then I see newly created beneficiary at the top of beneficiary names
+
